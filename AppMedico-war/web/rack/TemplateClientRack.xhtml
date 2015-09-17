@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../template/Template.xhtml">
+
+            <ui:define name="center">
+                <h:form id="f1">
+                    <p:commandButton id="cb1"  update="carDetail"  oncomplete="PF('carDialog').show()" icon="ui-icon-search"/>
+
+
+
+                    <p:dialog header="Buscar paciente(s)" style="font-size: 9px;"  widgetVar="carDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="carDetail" style="text-align:center;">
+                            <p:panelGrid  columns="1"  columnClasses="label,value">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel value="Criterio de Busqueda(cédula,HC. PISO, EMER):"  style="font-size: 9px;" />
+                                    <p:inputText value="#{jSFManagedBeanRACK.criterio}"/>
+                                    <p:commandButton value="Buscar" style="font-size: 13px;" process="@form" update=":f2:dt1 d1 f1" actionListener="#{jSFManagedBeanRACK.buttonAction(actionEvent)}" id="d1"   />
+                                </h:panelGrid>
+                                <h:panelGroup>
+
+                                </h:panelGroup>
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>
+                <h:form id="f2">
+                    <h:panelGrid  rendered="#{mbpersonal.findByCedulaLogin.cedulaLogin ne null}"  width="100%" style="text-align:center">
+                        <h1>Rack de Pacientes Hospitalizados</h1>
+                        <p:dataTable id="dt1"  value="#{jSFManagedBeanRACK.listaRackPAcientes}" var="item">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="SERVICIO"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.SERVICIO}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="SERV_PERMA"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.SERV_PERMA}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="BLOQUEADO"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.BLOQUEADO}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="HABITACION"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.HABITACION}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="PISO"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.PISO}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="PERMANENCIA"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.PERMANENCIA}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="PCN_NUMERO_HC"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.PCN_NUMERO_HC}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="APELLIDO_PATERNO"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.APELLIDO_PATERNO}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="APELLIDO_MATERNO"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.APELLIDO_MATERNO}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="PRIMER_NOMBRE"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.PRIMER_NOMBRE}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="SEGUNDO_NOMBRE"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.SEGUNDO_NOMBRE}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="SEXO"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.SEXO}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="CEDULA"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.CEDULA}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="FECHA_NACIMIENTO"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.FECHA_NACIMIENTO}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="FECHA_INGRESO"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.FECHA_INGRESO}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="DIAS_HOSPITAL"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.DIAS_HOSPITAL}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="FECHA_ALTA"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.FECHA_ALTA}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="DGN_DGN_ID"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.DGN_DGN_ID}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="PCNTMP_PCNTMP_ID"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.PCNTMP_PCNTMP_ID}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="MEDIC_TRATANTE"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.MEDIC_TRATANTE}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font: sans-serif;font-size: 7px" value="ESPECIALIDAD"/>
+                                </f:facet>
+                                <h:outputText style="font: sans-serif;font-size: 7px" value="#{item.ESPECIALIDAD}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGrid>
+
+                </h:form>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

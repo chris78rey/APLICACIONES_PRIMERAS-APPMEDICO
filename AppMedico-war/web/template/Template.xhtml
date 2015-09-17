@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      >
+
+    <f:view contentType="text/html">
+        <h:head>
+            <h:head>
+                <f:facet name="first">
+                    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                    <title>HOSPITAL DE ESPECIALIDADES DE LAS FUERZAS ARMADAS Nº1</title>
+                    <link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=cupertino" />
+                </f:facet>
+            </h:head>
+        </h:head>
+
+        <h:body>
+
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north"    size="27%"  resizable="false" closable="true" collapsible="true">
+                    <center>
+                        <p:panel  style="background-color:#c2dfef;height: 75%;width: 75%;">
+                            <center>
+                                <p:graphicImage  url="/resources/images/banner_he_1.png"/>                              
+
+                            </center>
+                        </p:panel>
+
+                        <br/>
+                        <p:clock pattern="' Son las 'HH:mm:ss' - 'dd' de 'MMMM' del 'yyyy" mode="server" />
+                    </center>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+
+                </p:layoutUnit>
+
+
+
+                <p:layoutUnit position="west" size="10%" style="font-size: 13px;"      collapsible="false">
+                    <ui:insert name="west">
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $(".ui-panelmenu-content").css("display", "block"); //shows the menuitems
+                                $(".ui-panelmenu-header").addClass("ui-state-active"); //sets the submenu header to active state
+                                $(".ui-icon-triangle-1-e").removeClass("ui-icon-triangle-1-e").addClass("ui-icon-triangle-1-s"); //sets the triangle icon to "expaned" state
+                            }
+                            );
+                        </script>
+                        <h:form id="formatemplatewest"  >
+
+
+
+                            <p:growl id="growl" life="2000" />  
+                            <p:growl id="messages" showDetail="false"/>
+
+
+                            <p:panelMenu id="pm001"  style="width:300px;font-size: 13px">
+
+                                <p:submenu id="sm1" label="Menú">
+                                    <p:menuitem style="font-size: 10px;"  value="Rack" action="/rack/TemplateClientRack"  />
+
+                                </p:submenu>
+
+
+                            </p:panelMenu>
+
+
+
+                        </h:form>
+
+                    </ui:insert>
+                </p:layoutUnit>
+
+
+
+
+
+                <p:layoutUnit position="center">
+
+                    <center>
+                        <h:form id="formatemplatecenter">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <p:menubar  style="font-size: 16px;color: #D20005;font-weight: bold ">                                   
+                                            <p:submenu  style=" background-color: #c2dfef" label="Cedula:#{mbpersonal.findByCedulaLogin.cedulaLogin}"/>
+                                            <p:submenu  style=" background-color: #c2dfef" label="Nombres:#{mbpersonal.findByCedulaLogin.nombres}"/>
+                                            <p:submenu  style=" background-color: #c2dfef" label="Apellidos:#{mbpersonal.findByCedulaLogin.apellidos}"/>
+                                        </p:menubar>
+                                    </td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>
+
+
+                                        <p:commandLink action="#{mbpersonal.regresaMenuPortal()}" >
+                                            <p:graphicImage value="#{resource['images/menu1.jpg']}" style="width: 65px; height: 50px"/>
+                                            <p:effect type="pulsate" event="click" />
+                                        </p:commandLink>
+
+                                        <p:commandLink action="#{mbpersonal.logout()}" >
+                                            <p:graphicImage value="#{resource['images/salir.jpg']}" style="width: 65px; height: 50px"/>
+                                            <p:effect type="pulsate" event="click" />
+                                        </p:commandLink>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </h:form>
+                        <br/>
+                        <br/>
+                        <ui:insert name="center">
+
+
+
+
+
+                        </ui:insert>
+                    </center>
+
+                </p:layoutUnit>
+
+
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
